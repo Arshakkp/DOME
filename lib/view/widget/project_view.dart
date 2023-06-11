@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/Widget/labels.dart';
-import 'package:todolist/Widget/tasksMeter.dart';
+import 'package:todolist/model/project_model.dart';
+
+import 'package:todolist/view/widget/tasksMeter.dart';
+
+import '../utils/labels.dart';
 
 class ProjectTile extends StatelessWidget {
-  const ProjectTile({super.key, required this.optionEnable});
+  const ProjectTile(
+      {super.key, required this.optionEnable, required this.projectModel});
   final bool optionEnable;
+  final ProjectModel projectModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class ProjectTile extends StatelessWidget {
               ? BorderRadius.circular(
                   50,
                 )
-              : BorderRadius.only(
+              : const BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50)),
         ),
@@ -30,8 +35,9 @@ class ProjectTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
+                height: 100,
                 child: Text(
-                  "Holiday in \nNorway",
+                  projectModel.title,
                   style: LabelStyle.headingWithColor(Colors.white),
                 ),
               ),

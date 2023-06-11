@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/NewTask/view.dart';
-import 'package:todolist/Widget/labels.dart';
+import 'package:todolist/model/project_model.dart';
+import 'package:todolist/view/add_task_screen.dart';
 
-import '../Widget/projectView.dart';
+import 'utils/labels.dart';
+import 'widget/project_view.dart';
 
 class ProjectScreen extends StatelessWidget {
-  const ProjectScreen({super.key});
+  const ProjectScreen({super.key, required this.projectModel});
+  final ProjectModel projectModel;
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -28,8 +30,9 @@ class ProjectScreen extends StatelessWidget {
                       SizedBox(
                         height: 400,
                         child: Hero(
-                            tag: 'project-view',
+                          tag: 'project-view',
                           child: ProjectTile(
+                            projectModel: projectModel,
                             optionEnable: false,
                           ),
                         ),
@@ -64,7 +67,7 @@ class ProjectScreen extends StatelessWidget {
                               ),
                             ),
                             bottom: 0,
-                            width: _width)
+                            width: width)
                     ],
                   ),
                 );

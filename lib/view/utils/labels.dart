@@ -16,4 +16,5 @@ class LabelStyle {
     color: Colors.black26,
     fontWeight: FontWeight.bold,
   );
+  
 }

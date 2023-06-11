@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:todolist/Home/view.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/controller/project_controller.dart';
+import 'package:todolist/view/home_screen.dart';
+import 'package:todolist/view/utils/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
-    );
+    return MaterialApp(
+        theme: Themes.themeData,
+        home: ChangeNotifierProvider(
+          create: (context) => ProjectController(),
+          child: const HomeScreen(),
+        ));
   }
 }
